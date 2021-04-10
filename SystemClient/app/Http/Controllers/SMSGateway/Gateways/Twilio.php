@@ -2,24 +2,29 @@
 
 namespace App\Http\Controllers\SMSGateway\Gateways;
 
-use App\Http\Controllers\SMSGateway\AbstractGateway;
+use App\Http\Controllers\Helpers\SMSGatewayConfFieldTypes;
+use App\Http\Controllers\SMSGateway\BaseGateway;
 
-class Twilio extends AbstractGateway
+class Twilio extends BaseGateway
 {
 
-    protected $name = 'Twilioooo';
+    protected $id   = 'twilio';
+    protected $name = 'Twilio';
     protected $link = 'www.twilio.com';
 
+    const ENDPOINT = 'https://api.twilio.com/2010-04-01';
 
 
     public function getConfiguration()
     {
         return array(
-          'Account SID' => array(
-              'type' => SMSGatewayConfFieldTypes::$text
+          'accountSid' => array(
+              'type' => SMSGatewayConfFieldTypes::$text,
+              'name' => 'Account SID',
           ),
-          'Auth Token' => array(
-               'type' => SMSGatewayConfFieldTypes::$text
+          'authToken' => array(
+               'type' => SMSGatewayConfFieldTypes::$text,
+               'name' => 'Auth Token',
           )
         );
     }
@@ -32,6 +37,8 @@ class Twilio extends AbstractGateway
     public function sendSms($clientId, $sms)
     {
 
+        var_dump($this->getConfigurationValue('accountSid'));
+        exit();
         $this->makeRequest();
     }
 
@@ -39,6 +46,7 @@ class Twilio extends AbstractGateway
     public function makeRequest()
     {
 
+        $url = self::ENDPOINT;
 
 
     }

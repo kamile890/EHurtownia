@@ -19,3 +19,6 @@ Route::get('/', function () {
 
 Route::get('/gateways', [GatewaysListController::class, 'index']);
 
+Route::post('/saveConfiguration/{name}', [GatewaysListController::class, 'saveConfiguration']);
+Route::get('/send', [GatewaysListController::class, 'testSend']);
+

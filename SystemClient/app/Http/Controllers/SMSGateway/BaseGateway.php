@@ -2,12 +2,33 @@
 
 namespace App\Http\Controllers\SMSGateway;
 
-abstract class AbstractGateway implements GatewayInterface
+use App\Models\Gatewayconfiguration;
+
+class BaseGateway implements GatewayInterface
 {
 
-    protected $name = 'AbstractGateway';
+    protected $id   = 'AbstractGatewayId';
+    protected $name = 'AbstractGatewayName';
     protected $link = 'www.abstractGateway.com';
+    protected $configuration;
+    protected $configurationValues;
 
+    public function __construct()
+    {
+        $this->configuration = $this->getConfiguration();
+
+    }
+
+    protected function getConfigurationValue($fieldValue)
+    {
+        $result = Gatewayconfiguration::where('name', $this->name)->first();
+
+        if($result)
+        {
+            return unserialize($result->configuration)[$fieldValue];
+        }
+
+    }
 
     public function sendSms($clientId, $sms)
     {
@@ -45,5 +66,12 @@ abstract class AbstractGateway implements GatewayInterface
         return $this->link;
     }
 
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
 }
