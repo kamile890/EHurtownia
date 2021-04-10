@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\SMSGateway\GatewaysListController;
+use \App\Http\Controllers\Templates\TemplatesList;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/gateways', [GatewaysListController::class, 'index']);
-
+Route::get('/templatesList', [TemplatesList::class, 'index']);
+Route::post('/addTemplate', [TemplatesList::class, 'addTemplate']);
 Route::post('/saveConfiguration/{name}', [GatewaysListController::class, 'saveConfiguration']);
-Route::get('/send', [GatewaysListController::class, 'testSend']);
+
+
 

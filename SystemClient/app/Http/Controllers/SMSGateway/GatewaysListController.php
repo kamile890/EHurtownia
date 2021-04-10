@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SMSGateway;
 
 use \App\Http\Controllers\Controller;
+use App\Http\Controllers\Helpers\AjaxRequestHelper;
 use App\Http\Controllers\Helpers\AjaxResponse;
 use App\Http\Controllers\Helpers\SenderHelper;
 use \App\Http\Controllers\SMSGateway\Gateways;
@@ -55,16 +56,7 @@ class GatewaysListController extends Controller
 
     public function saveConfiguration($name, Request $request)
     {
-        $config = explode('&', $request->get('configuration'));
-        $configuration = [];
-        foreach($config as $conf)
-        {
-            $params = explode('=', $conf);
-            if($params[1])
-            {
-                $configuration[$params[0]] = $params[1];
-            }
-        }
+        $configuration = AjaxRequestHelper::makeArray($request->get('configuration'));
 
         try {
             $gatewayConfModel = new Gatewayconfiguration();

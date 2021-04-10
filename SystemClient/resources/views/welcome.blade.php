@@ -43,8 +43,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Client List</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item">
                 <a class="nav-link" href="/gateways">SMS Gateways</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/templatesList">SMS Templates</a>
             </li>
 
         </ul>
