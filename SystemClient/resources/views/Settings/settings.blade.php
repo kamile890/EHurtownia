@@ -32,4 +32,19 @@
 
 @section('body')
 
+    <form action="/saveSettings">
+        <div class="container-fluid form-container">
+            <div class="form-group">
+                <label>Używana bramka SMS:</label>
+                <select class="form-control" name="gateway">
+                    @foreach($gateways as $gateway)
+                        <option value="{{$gateway->name}}">{{$gateway->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <button type="submit">Zapisz</button>
+
+    </form>
+
 @endsection
