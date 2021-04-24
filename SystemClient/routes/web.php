@@ -31,6 +31,7 @@ Route::get('/register', [Register::class, 'register']);
 Route::get('/login', [Login::class, 'login']);
 Route::get('/logout', [Login::class, 'logout']);
 Route::get('/settings', [Settings::class, 'index']);
+Route::get('/saveSettings', [Settings::class, 'saveSettings']);
 
 
 
