@@ -21,4 +21,11 @@ class AjaxResponse
         ];
     }
 
+    public static function custom($message, $type)
+    {
+        return [
+            'type' => $type,
+            'message' => $message
+        ];
+    }
 }

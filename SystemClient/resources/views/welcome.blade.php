@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-
+        <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/app.css') }}">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -17,7 +17,16 @@
 
         <!-- Popper JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <!-- Latest compiled JavaScript -->
 
         <!-- Styles -->
@@ -30,31 +39,73 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+
+        @section('script')
+        @show
+
+
     </head>
     <body class="antialiased">
 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
+                <ul class="navbar-nav">
 
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Create Client</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Client List</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/gateways">SMS Gateways</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/templatesList">SMS Templates</a>
-            </li>
+                    @if(!empty(\Illuminate\Support\Facades\Session::get('loggedRole')) && \Illuminate\Support\Facades\Session::get('loggedRole')[0] == 'Administrator')
+                        @section('adminNavbarSection')
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Create Client</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Client List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/gateways">SMS Gateways</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/templatesList">SMS Templates</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/settings">Settings</a>
+                            </li>
+                        @show
+                    @elseif(!empty(\Illuminate\Support\Facades\Session::get('loggedRole')) && \Illuminate\Support\Facades\Session::get('loggedRole')[0] == 'Hurtownik')
+                        @section('hurtownikNavbarSection')
+                        {{-- sekcja hurtownika --}}
+                            Teraz zalogowany jest hurtownik
+                        @show
+                    @elseif(!empty(\Illuminate\Support\Facades\Session::get('loggedRole')) && \Illuminate\Support\Facades\Session::get('loggedRole')[0] == 'Klient')
+                        {{-- sekcja zalogowanego klienta --}}
+                        Teraz zalogowany jest Klient
+                    @else
+                        @section('notLoggedClientSection')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/registerPage">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/loginPage">Login</a>
+                            </li>
+                        @show
+                    @endif
+                    @if(\Illuminate\Support\Facades\Session::has('logged'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Wyloguj</a>
+                            </li>
+                    @endif
+                </ul>
+            </nav>
 
-        </ul>
+            @section('message')
+                @if(\Illuminate\Support\Facades\Session::has('message'))
+                    <div class="alert alert-{{\Illuminate\Support\Facades\Session::get('message')['type']}} fade show alert-dismissible">
+                        {{\Illuminate\Support\Facades\Session::get('message')['message']}}
+                    </div>
+                @endif
+            @show
 
-    </nav>
+            @section('body')
+                <div>
 
-
-
+                </div>
+            @show
     </body>
 </html>
