@@ -49,7 +49,8 @@
                 <select class="form-control" name="selectedTemplate">
                     <option value="0"> --- </option>
                     @foreach($templates as $template)
-                        <option value="{{$template->name}}">{{$template->name}}</option>
+
+                        <option value="{{$template->name}}" @if(isset($selectedTemplate)) @if($selectedTemplate == $template->name) selected @endif @endif>{{$template->name}}</option>
                     @endforeach
                 </select>
             </div>

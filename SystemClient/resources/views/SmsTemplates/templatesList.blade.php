@@ -2,7 +2,6 @@
 
 @section('script')
     <script>
-
         function addTemplate(){
             var params =  $('#addTemplateForm').serialize();
             $.ajax({
@@ -17,6 +16,12 @@
                 }
             });
         }
+
+        function add(element){
+            var value = element.getAttribute('value');
+            $('#tekst').val($('#tekst').val() + value)
+        }
+
     </script>
 @endsection
 
@@ -81,18 +86,28 @@
             </div>
 
             <!-- Modal body -->
-            <div class="modal-body">
-                <div >
+            <div class="modal-body row">
+                <div class="col-sm-6">
                     <form id="addTemplateForm" action="/addTemplate" method="POST">
                         <div class="form-group">
-                            <label>Template Name:</label>
+                            <label>Nazwa:</label>
                             <input type="text" class="form-control" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="pwd">Context</label>
-                            <textarea class="form-control" rows="5" name="content" required></textarea>
+                            <label for="pwd">Tekst:</label>
+                            <textarea id="tekst" class="form-control" rows="5" name="content" required></textarea>
                         </div>
                     </form>
+                </div>
+                <div class="col-sm-6">
+                    @foreach($variables as $category=>$tplvariables)
+                        <div class="template-variable-category" data-toggle="collapse" data-target="#{{$category}}">{{$category}} </div>
+                        <div id="{{$category}}" class="collapse template-variable-container">
+                            @foreach($tplvariables as $variable)
+                                <div class="template-variable" onclick="add(this)" value="{{$variable}}">{{$variable}}</div>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -106,7 +121,6 @@
     </div>
 </div>
 @endsection
-
 
 
 

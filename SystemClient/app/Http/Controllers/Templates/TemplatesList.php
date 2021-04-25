@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Templates;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\AjaxRequestHelper;
 use App\Http\Controllers\Helpers\AjaxResponse;
+use App\Http\Controllers\Helpers\TemplateVariables;
 use App\Models\Template;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class TemplatesList extends Controller
     {
 
         $templates = Template::all();
-        return view('SmsTemplates.templatesList', compact('templates'));
+        $variables = TemplateVariables::VARIABLES;
+
+        return view('SmsTemplates.templatesList', compact('templates', 'variables'));
     }
 
 
