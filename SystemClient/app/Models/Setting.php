@@ -32,4 +32,9 @@ class Setting extends Model
         }
     }
 
+    public static function getSelectedGateway()
+    {
+        return Setting::where('name', 'selectedGateway')->first()->value;
+    }
+
 }

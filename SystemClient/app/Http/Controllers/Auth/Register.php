@@ -6,7 +6,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\AjaxResponse;
 use App\Http\Controllers\Helpers\PasswordEncoder;
+use App\Http\Controllers\Helpers\SenderHelper;
 use App\Models\Role;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -48,10 +50,16 @@ class Register extends Controller
            'nazwisko' => $nazwisko
         ]);
 
+        $this->sendRegisterMessage();
+
         $message = 'Rejestracja przebiegła pomyślnie, możesz się teraz zalogować.';
         $response = AjaxResponse::success($message);
         return \redirect('/loginPage')->with(['message' => $response]);
     }
 
+    private function sendRegisterMessage()
+    {
+            SenderHelper::sendSMS(1, 'test');
+    }
 
 }

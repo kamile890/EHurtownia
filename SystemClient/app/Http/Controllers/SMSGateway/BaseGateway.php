@@ -40,15 +40,6 @@ class BaseGateway implements GatewayInterface
         // TODO: Implement getConfiguration() method.
     }
 
-    public function testConnection()
-    {
-        // TODO: Implement testConnection() method.
-    }
-
-    public function makeRequest()
-    {
-        // TODO: Implement makeRequest() method.
-    }
 
     /**
      * @return string

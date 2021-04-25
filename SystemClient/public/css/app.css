@@ -1,7 +1,20 @@
 .form-container {
     padding: 30px;
 }
-
 .alert{
     margin: 10px;
+}
+.template-variable-category{
+    cursor: pointer;
+    font-size: 18px;
+}
+.template-variable{
+    cursor: pointer;
+}
+
+.template-variable:hover{
+    background-color: #f7fafc;
+}
+.template-variable-container{
+    margin-bottom: 10px;
 }

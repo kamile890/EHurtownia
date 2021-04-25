@@ -23,7 +23,7 @@ class Settings extends Controller
 
 
         $usedGateway = Setting::where('name', 'selectedGateway')->first() ? Setting::where('name', 'selectedGateway')->first()->value : null;
-        $selectedTemplate = Setting::where('name', 'selectedTemplate') ? Setting::where('name', 'selectedTemplate') : '0';
+        $selectedTemplate = Setting::where('name', 'selectedTemplate')->first() ? Setting::where('name', 'selectedTemplate')->first()->value : '0';
 
 
         return view('Settings.settings', compact('gateways', 'usedGateway', 'templates', 'selectedTemplate'));
