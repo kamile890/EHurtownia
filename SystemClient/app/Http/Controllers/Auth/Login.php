@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\AjaxResponse;
+use App\Http\Controllers\Helpers\HttpResponse;
 use App\Http\Controllers\Helpers\PasswordEncoder;
 use App\Models\Role;
 use App\Models\User;
@@ -31,19 +32,19 @@ class Login extends Controller
         if(!$user)
         {
             $message = 'Użytkownik o podanym adresie email nie istnieje.';
-            $response = AjaxResponse::custom($message, 'danger');
+            $response = HttpResponse::custom($message, 'danger');
             return back()->with(['message' => $response]);
         }
 
         if($haslo != $user->haslo)
         {
             $message = 'Podane hasło jest nieprawidłowe.';
-            $response = AjaxResponse::custom($message, 'danger');
+            $response = HttpResponse::custom($message, 'danger');
             return back()->with(['message' => $response]);
         }
 
         $message = 'Pomyślnie zalogowano.';
-        $response = AjaxResponse::success($message);
+        $response = HttpResponse::success($message);
 
         $role = Role::where('id', $user->role_id)->first();
         Session::push('loggedRole', $role->name);

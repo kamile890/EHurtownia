@@ -5,6 +5,8 @@ namespace App\Http\Controllers\SMSGateway;
 use \App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\AjaxRequestHelper;
 use App\Http\Controllers\Helpers\AjaxResponse;
+use App\Http\Controllers\Helpers\HttpRequestHelper;
+use App\Http\Controllers\Helpers\HttpResponse;
 use App\Http\Controllers\Helpers\SenderHelper;
 use \App\Http\Controllers\SMSGateway\Gateways;
 use App\Models\Gatewayconfiguration;
@@ -54,20 +56,27 @@ class GatewaysListController extends Controller
         }
     }
 
-    public function saveConfiguration($name, Request $request)
+    public function saveConfiguration(Request $request)
     {
-        $configuration = AjaxRequestHelper::makeArray($request->get('configuration'));
+
+        $params = HttpRequestHelper::getArray($request->all());
+        unset($params['gatewayName']);
 
         try {
             $gatewayConfModel = new Gatewayconfiguration();
-            $gatewayConfModel->name = $name;
-            $gatewayConfModel->configuration = serialize($configuration);
+            $gatewayConfModel->name = $request->all()['gatewayName'];
+            $gatewayConfModel->configuration = serialize($params);
             $gatewayConfModel->createOrUpdate();
 
-            return AjaxResponse::success($name . ' gateway has been updated.');
+            $message = $request->all()['gatewayName'] . ' gateway has been updated.';
+            $response = HttpResponse::success($message);
+
+            return back()->with(['message' => $response]);
         }
         catch (\Throwable $exception) {
-            return AjaxResponse::error('Update failed');
+            $message = 'Update failed';
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
         }
 
     }

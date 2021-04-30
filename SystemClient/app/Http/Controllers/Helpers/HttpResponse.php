@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Helpers;
 
-class AjaxResponse
+class HttpResponse
 {
 
     public static function success($message)
@@ -16,7 +16,7 @@ class AjaxResponse
     public static function error($message)
     {
         return [
-            'type' => 'error',
+            'type' => 'danger',
             'message' => $message
         ];
     }

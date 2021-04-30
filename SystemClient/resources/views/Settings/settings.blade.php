@@ -17,7 +17,7 @@
         <a class="nav-link" href="#">Produkty</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Etykiety</a>
+        <a class="nav-link" href="/etykiety">Etykiety</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/gateways">Bramki SMS</a>

@@ -1,28 +1,5 @@
 @extends('welcome')
 
-
-
-@section('script')
-    <script>
-        function saveConfiguration(name, id) {
-
-            var params =  $('.' + id).serialize();
-
-            $.ajax({
-                type:'POST',
-                url:'/saveConfiguration/' + name,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "configuration" : params
-                },
-                success:function(data) {
-                    console.log(data)
-                }
-            });
-        }
-    </script>
-@endsection
-
 @section('adminNavbarSection')
     <li class="nav-item">
         <a class="nav-link" href="#">Lista Hurtowników</a>
@@ -40,7 +17,7 @@
         <a class="nav-link" href="#">Produkty</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Etykiety</a>
+        <a class="nav-link" href="/etykiety">Etykiety</a>
     </li>
     <li class="nav-item active">
         <a class="nav-link" href="/gateways">Bramki SMS</a>
@@ -84,8 +61,8 @@
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <form class="{{$gateway['id']}}">
-
+                            <form class="{{$gateway['id']}}" action="/saveConfiguration">
+                                <input type="hidden" value="{{$gateway['name']}}" name="gatewayName">
                                 @foreach($gateway['configuration'] as $key=>$value)
                                     <div class="form-group">
                                         <label>{{$value['name']}}</label>
@@ -97,7 +74,7 @@
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" onclick="saveConfiguration('{{$gateway['name']}}', '{{$gateway['id']}}')" data-dismiss="modal">Save</button>
+                            <button type="button" class="btn btn-success" onclick="submit('{{$gateway['id']}}')" data-dismiss="modal">Save</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
 
@@ -109,14 +86,7 @@
       @endforeach
     </tbody>
 </table>
-<form action="/send">
 
-        <div class="form-group">
-            <label>test</label>
-            <input type="text" class="form-control">
-        </div>
-    <button type="submit">Send</button>
-</form>
 @endsection
 
 

@@ -6,6 +6,7 @@ use \App\Http\Controllers\Templates\TemplatesList;
 use \App\Http\Controllers\Auth\Register;
 use \App\Http\Controllers\Auth\Login;
 use \App\Http\Controllers\Settings\Settings;
+use \App\Http\Controllers\Etykiety\ListaEtykiet;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +24,8 @@ Route::get('/', function () {
 
 Route::get('/gateways', [GatewaysListController::class, 'index']);
 Route::get('/templatesList', [TemplatesList::class, 'index']);
-Route::post('/addTemplate', [TemplatesList::class, 'addTemplate']);
-Route::post('/saveConfiguration/{name}', [GatewaysListController::class, 'saveConfiguration']);
+Route::get('/addTemplate', [TemplatesList::class, 'addTemplate']);
+Route::get('/saveConfiguration', [GatewaysListController::class, 'saveConfiguration']);
 Route::get('/registerPage', [Register::class, 'index']);
 Route::get('/loginPage', [Login::class, 'index']);
 Route::get('/register', [Register::class, 'register']);
@@ -32,6 +33,8 @@ Route::get('/login', [Login::class, 'login']);
 Route::get('/logout', [Login::class, 'logout']);
 Route::get('/settings', [Settings::class, 'index']);
 Route::get('/saveSettings', [Settings::class, 'saveSettings']);
+Route::get('/editTemplate', [TemplatesList::class, 'editTemplate']);
+Route::get('/deleteTemplate', [TemplatesList::class, 'deleteTemplate']);
 
 
 

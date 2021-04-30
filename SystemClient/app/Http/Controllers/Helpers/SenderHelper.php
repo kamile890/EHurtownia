@@ -21,15 +21,12 @@ class SenderHelper
             //log
             return;
         }
-
         $configuration = Gatewayconfiguration::where('name', $selectedGateway)->first();
         if(!$configuration)
         {
             //log
             return;
         }
-
-
         try{
             //
             $gateway = new AfricasTalking();

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\AjaxResponse;
+use App\Http\Controllers\Helpers\HttpResponse;
 use App\Models\Gatewayconfiguration;
 use App\Models\Setting;
 use App\Models\Template;
@@ -46,11 +47,11 @@ class Settings extends Controller
         catch(\Exception $ex)
         {
             $message = 'Something went wrong! Try again!';
-            $response = AjaxResponse::custom($message, 'danger');
+            $response = HttpResponse::custom($message, 'danger');
             return back()->with(['message' => $response]);
         }
         $message = 'Settings successfully updated.';
-        $response = AjaxResponse::success($message);
+        $response = HttpResponse::success($message);
         return back()->with(['message' => $response]);
     }
 

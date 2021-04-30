@@ -40,8 +40,14 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        <script>
+            function submit(htmlClass) {
+                $('.' + htmlClass).submit();
+            }
+        </script>
 
         @section('script')
+
         @show
 
 

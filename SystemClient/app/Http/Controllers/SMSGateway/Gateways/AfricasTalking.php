@@ -38,7 +38,7 @@ class AfricasTalking extends BaseGateway
     {
         $params = [
             'username' => $this->getConfigurationValue('username'),
-            'to' => '+48534561767',
+            'to' => '+48883475551',
             'message' => $sms,
         ];
 
@@ -63,7 +63,8 @@ class AfricasTalking extends BaseGateway
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 
         $response = $this->parseReponse(curl_exec($ch))->SMSMessageData->Recipients[0];
-
+        var_dump($response);
+        exit();
         if($response->statusCode != 101)
         {
             throw new \Exception($response->status);
