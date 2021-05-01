@@ -35,6 +35,10 @@
                         <input type="text" class="form-control" name="nazwisko" placeholder="Nazwisko" required>
                     </div>
                     <div class="form-group">
+                        <label>Numer Telefonu:</label>
+                        <input type="text" class="form-control" name="phone" placeholder="Wprowadź z numerem kierunkowym">
+                    </div>
+                    <div class="form-group">
                         <label for="city">City:</label>
                         <input type="text" class="form-control" placeholder="Miasto">
                     </div>

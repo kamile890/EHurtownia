@@ -30,7 +30,7 @@ class BaseGateway implements GatewayInterface
 
     }
 
-    public function sendSms($clientId, $sms)
+    public function sendSms($phone, $sms)
     {
         // TODO: Implement sendSms() method.
     }

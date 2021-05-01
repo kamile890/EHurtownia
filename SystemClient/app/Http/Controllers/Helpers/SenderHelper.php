@@ -8,6 +8,8 @@ use App\Http\Controllers\SMSGateway\BaseGateway;
 use App\Http\Controllers\SMSGateway\Gateways\AfricasTalking;
 use App\Models\Gatewayconfiguration;
 use App\Models\Setting;
+use App\Models\Template;
+use App\Models\User;
 
 class SenderHelper
 {
@@ -15,6 +17,26 @@ class SenderHelper
     public static function sendSMS($clientId, $templateId)
     {
         $selectedGateway = Setting::getSelectedGateway();
+
+        $client = User::where('id', $clientId)->first();
+        $template = Template::where('id', $templateId)->first();
+        if(!$client)
+        {
+            //log
+            return;
+        }
+
+        if(!$client->numer_telefonu)
+        {
+            //log
+            return;
+        }
+
+        if(!$template)
+        {
+            //log
+            return;
+        }
 
         if($selectedGateway == '0')
         {
@@ -28,9 +50,11 @@ class SenderHelper
             return;
         }
         try{
-            //
-            $gateway = new AfricasTalking();
-            $gateway->sendSms(1, 'test');
+
+            $message = MessageCreator::getMessage($client, $template);
+
+            $gateway = new $selectedGateway();
+            $gateway->sendSms($client->numer_telefonu, $message);
         }
         catch(\Exception $ex)
         {
