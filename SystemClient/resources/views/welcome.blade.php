@@ -60,19 +60,31 @@
                     @if(!empty(\Illuminate\Support\Facades\Session::get('loggedRole')) && \Illuminate\Support\Facades\Session::get('loggedRole')[0] == 'Administrator')
                         @section('adminNavbarSection')
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Create Client</a>
+                                <a class="nav-link" href="/dealers">Lista Hurtowników</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Client List</a>
+                                <a class="nav-link" href="#">Lista Klientów</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/gateways">SMS Gateways</a>
+                                <a class="nav-link" href="#">Custom Fields</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/templatesList">SMS Templates</a>
+                                <a class="nav-link" href="#">Kategorie produktów</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/settings">Settings</a>
+                                <a class="nav-link" href="#">Produkty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/labels">Etykiety</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/gateways">Bramki SMS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/templatesList">Szablony SMS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/settings">Ustawienia</a>
                             </li>
                         @show
                     @elseif(!empty(\Illuminate\Support\Facades\Session::get('loggedRole')) && \Illuminate\Support\Facades\Session::get('loggedRole')[0] == 'Hurtownik')

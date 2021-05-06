@@ -2,7 +2,7 @@
 
 @section('adminNavbarSection')
     <li class="nav-item">
-        <a class="nav-link" href="#">Lista Hurtowników</a>
+        <a class="nav-link" href="/dealers">Lista Hurtowników</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="#">Lista Klientów</a>
@@ -17,7 +17,7 @@
         <a class="nav-link" href="#">Produkty</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/etykiety">Etykiety</a>
+        <a class="nav-link" href="/labels">Etykiety</a>
     </li>
     <li class="nav-item active">
         <a class="nav-link" href="/gateways">Bramki SMS</a>

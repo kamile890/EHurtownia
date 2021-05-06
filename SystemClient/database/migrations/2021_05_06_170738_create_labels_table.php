@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEtykietyTable extends Migration
+class CreateLabelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateEtykietyTable extends Migration
      */
     public function up()
     {
-        Schema::create('etykiety', function (Blueprint $table) {
+        Schema::create('labels', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->timestamps();
+            $table->string('color');
         });
     }
 
@@ -27,6 +27,6 @@ class CreateEtykietyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('etykiety');
+        Schema::dropIfExists('labels');
     }
 }

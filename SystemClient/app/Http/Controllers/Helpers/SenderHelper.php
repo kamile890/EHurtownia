@@ -11,6 +11,8 @@ use App\Models\Setting;
 use App\Models\Template;
 use App\Models\User;
 
+
+
 class SenderHelper
 {
 
@@ -52,8 +54,8 @@ class SenderHelper
         try{
 
             $message = MessageCreator::getMessage($client, $template);
-
-            $gateway = new $selectedGateway();
+            //być może namespace error wyrzuci
+            $gateway = new AfricasTalking();
             $gateway->sendSms($client->numer_telefonu, $message);
         }
         catch(\Exception $ex)

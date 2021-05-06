@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Templates;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\HttpResponse;
 use App\Http\Controllers\Helpers\TemplateVariables;
+use App\Models\Setting;
 use App\Models\Template;
 use Illuminate\Http\Request;
 
@@ -88,6 +89,13 @@ class TemplatesList extends Controller
         try
         {
             Template::where('name', $name)->delete();
+
+            $setting = Setting::where('name', 'selectedTemplate')->first();
+
+            if($setting->value == $name)
+            {
+                Setting::where('name', 'selectedTemplate')->update(['value' => '0']);
+            }
 
             $message = 'Template successfully deleted.';
             $response = HttpResponse::success($message);

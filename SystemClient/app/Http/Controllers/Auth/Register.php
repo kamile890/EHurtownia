@@ -63,13 +63,18 @@ class Register extends Controller
 
     private function sendRegisterMessage($clientId)
     {
-            SenderHelper::sendSMS(1, $this->getRegisterSMSTemplateId());
+
+            SenderHelper::sendSMS($clientId, $this->getRegisterSMSTemplateId());
     }
 
     private function getRegisterSMSTemplateId()
     {
         $template = Template::where('name', Setting::where('name', 'selectedTemplate')->first()->value)->first();
-        return $template->id;
+        if($template)
+        {
+            return $template->id;
+        }
+        return '0';
     }
 
 }

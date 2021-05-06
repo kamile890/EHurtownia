@@ -6,7 +6,8 @@ use \App\Http\Controllers\Templates\TemplatesList;
 use \App\Http\Controllers\Auth\Register;
 use \App\Http\Controllers\Auth\Login;
 use \App\Http\Controllers\Settings\Settings;
-use \App\Http\Controllers\Etykiety\ListaEtykiet;
+use \App\Http\Controllers\Labels\LabelsController;
+use \App\Http\Controllers\Dealers\DealersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +36,12 @@ Route::get('/settings', [Settings::class, 'index']);
 Route::get('/saveSettings', [Settings::class, 'saveSettings']);
 Route::get('/editTemplate', [TemplatesList::class, 'editTemplate']);
 Route::get('/deleteTemplate', [TemplatesList::class, 'deleteTemplate']);
+Route::get('/labels', [LabelsController::class, 'index']);
+Route::get('/addLabel', [LabelsController::class, 'addLabel']);
+Route::get('/editLabel', [LabelsController::class, 'editLabel']);
+Route::get('/dealers', [DealersController::class, 'index']);
+Route::get('/addDealer', [DealersController::class, 'addDealer']);
+Route::get('//editDealer', [DealersController::class, 'editDealer']);
 
 
 
