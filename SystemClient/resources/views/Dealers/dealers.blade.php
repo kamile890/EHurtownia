@@ -5,16 +5,16 @@
         <a class="nav-link active" href="/dealers">Lista Hurtowników</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Lista Klientów</a>
+        <a class="nav-link" href="/clients">Lista Klientów</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Custom Fields</a>
+        <a class="nav-link" href="/customFields">Custom Fields</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Kategorie produktów</a>
+        <a class="nav-link" href="/categories">Kategorie produktów</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Produkty</a>
+        <a class="nav-link" href="/products">Produkty</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/labels">Etykiety</a>

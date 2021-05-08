@@ -8,6 +8,10 @@ use \App\Http\Controllers\Auth\Login;
 use \App\Http\Controllers\Settings\Settings;
 use \App\Http\Controllers\Labels\LabelsController;
 use \App\Http\Controllers\Dealers\DealersController;
+use \App\Http\Controllers\Products\ProductsList;
+use \App\Http\Controllers\Categories\CategoriesList;
+use \App\Http\Controllers\Clients\ClientsList;
+use \App\Http\Controllers\CustomFields\CustomFieldsList;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,7 +45,18 @@ Route::get('/addLabel', [LabelsController::class, 'addLabel']);
 Route::get('/editLabel', [LabelsController::class, 'editLabel']);
 Route::get('/dealers', [DealersController::class, 'index']);
 Route::get('/addDealer', [DealersController::class, 'addDealer']);
-Route::get('//editDealer', [DealersController::class, 'editDealer']);
+Route::get('/editDealer', [DealersController::class, 'editDealer']);
+Route::get('/products', [ProductsList::class, 'index']);
+Route::get('/addProduct', [ProductsList::class, 'addProduct']);
+Route::get('/editProduct', [ProductsList::class, 'editProduct']);
+Route::get('/categories', [CategoriesList::class, 'index']);
+Route::get('/addCategory', [CategoriesList::class, 'addCategory']);
+Route::get('/clients', [ClientsList::class, 'index']);
+Route::get('/customFields', [CustomFieldsList::class, 'index']);
+Route::get('/addCustom', [CustomFieldsList::class, 'addCustom']);
+Route::get('/editCustom', [CustomFieldsList::class, 'editCustom']);
+
+
 
 
 

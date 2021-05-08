@@ -8,7 +8,7 @@
         <a class="nav-link" href="/clients">Lista Klientów</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/customFields">Custom Fields</a>
+        <a class="nav-link active" href="/customFields">Custom Fields</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/categories">Kategorie produktów</a>
@@ -16,7 +16,7 @@
     <li class="nav-item">
         <a class="nav-link" href="/products">Produkty</a>
     </li>
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="/labels">Etykiety</a>
     </li>
     <li class="nav-item">
@@ -34,47 +34,45 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Kolor</th>
-            <th style="text-align: end"><button class="btn btn-primary" data-toggle="modal" data-target="#addLabel"><i class="fa fa-plus"></i> Dodaj Etykiete</button></th>
+            <th>Nazwa</th>
+            <th style="text-align: end"><button class="btn btn-primary" data-toggle="modal" data-target="#addCustom"><i class="fa fa-plus"></i> Dodaj Custom Field</button></th>
 
         </tr>
 
         </thead>
         <tbody>
 
-        @foreach ($labels as $label)
+        @foreach ($customs as $field)
             <tr>
-                <td>{{$label['name']}}</td>
-                <td><div class="color" style="background-color: {{$label['color']}}; width: 120px; height: 40px;"></div></td>
-                <td style="text-align: end"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#a{{$label['id']}}">
+                <td>{{$field['name']}}</td>
+                <td style="text-align: end"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#a{{$field['name']}}">
                         Edytuj
                     </button></td>
 
-                <div class="modal fade" id="a{{$label['id']}}">
+                <div class="modal fade" id="a{{$field['name']}}">
                     <div class="modal-dialog">
                         <div class="modal-content">
 
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">Edycja etykiety '{{$label['name']}}'</h4>
+                                <h4 class="modal-title">Edycja Custom Field '{{$field['name']}}'</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
 
                             <!-- Modal body -->
                             <div class="modal-body">
-                                <form class="aa{{$label['name']}}" action="/editLabel">
-                                    <input type="hidden" class="form-control" name="name" value="{{$label['name']}}" required>
+                                <form class="aa{{$field['name']}}" action="/editCustom">
+                                    <input type="hidden" class="form-control" name="id" value="{{$field['id']}}" required>
                                     <div class="form-group">
-                                        <label for="pwd">Kolor:</label>
-                                        <input type="color" value="{{$label['color']}}" name="color"/>
+                                        <label for="pwd">Nazwa:</label>
+                                        <input type="text" class="form-control" value="{{$field['name']}}" name="name"/>
                                     </div>
                                 </form>
                             </div>
 
                             <!-- Modal footer -->
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="submit('aa{{$label['name']}}')" data-dismiss="modal">Save</button>
+                                <button type="button" class="btn btn-success" onclick="submit('aa{{$field['name']}}')" data-dismiss="modal">Save</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
 
@@ -87,7 +85,7 @@
         </tbody>
     </table>
 
-    <div class="modal fade" id="addLabel">
+    <div class="modal fade" id="addCustom">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
@@ -100,14 +98,10 @@
                 <!-- Modal body -->
                 <div class="modal-body row">
                     <div class="col-sm-12">
-                        <form class="addTemplateForm" action="/addLabel">
+                        <form class="addCustomForm" action="/addCustom">
                             <div class="form-group">
                                 <label>Nazwa:</label>
-                                <input type="text" class="form-control" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Kolor:</label>
-                                <input type="color" name="color"/>
+                                <input type="text" class="form-control" name="name">
                             </div>
                         </form>
                     </div>
@@ -116,7 +110,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="submit('addTemplateForm')" data-dismiss="modal">Add</button>
+                    <button type="button" class="btn btn-success" onclick="submit('addCustomForm')" data-dismiss="modal">Dodaj</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
 
