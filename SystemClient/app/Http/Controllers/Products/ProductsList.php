@@ -46,6 +46,15 @@ class ProductsList extends Controller
             return back()->with(['message' => $response]);
         }
 
+        $product = Product::where('name', $request->get('name'))->first();
+
+        if($product)
+        {
+            $message = "Produkt o takiej nazwie już istnieje.";
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
+        }
+
         if($request->get('amount') < 0)
         {
             $message = "Ilość nie może być ujemna.";
@@ -103,6 +112,15 @@ class ProductsList extends Controller
         if($request->get('amount') < 0)
         {
             $message = "Ilość nie może być ujemna.";
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
+        }
+
+        $product = Product::where('name', $request->get('name'))->first();
+
+        if($product && $product->name != $request->get('name'))
+        {
+            $message = "Produkt o takiej nazwie już istnieje.";
             $response = HttpResponse::error($message);
             return back()->with(['message' => $response]);
         }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\AjaxResponse;
 use App\Http\Controllers\Helpers\HttpResponse;
 use App\Models\Gatewayconfiguration;
+use App\Models\Label;
 use App\Models\Setting;
 use App\Models\Template;
 use Illuminate\Database\Eloquent\Model;
@@ -21,13 +22,14 @@ class Settings extends Controller
 
         $gateways = Gatewayconfiguration::all();
         $templates = Template::all();
+        $labels = Label::all();
 
 
         $usedGateway = Setting::where('name', 'selectedGateway')->first() ? Setting::where('name', 'selectedGateway')->first()->value : null;
         $selectedTemplate = Setting::where('name', 'selectedTemplate')->first() ? Setting::where('name', 'selectedTemplate')->first()->value : '0';
+        $selectedLabel = Setting::where('name', 'selectedLabel')->first() ? Setting::where('name', 'selectedLabel')->first()->value : '0';
 
-
-        return view('Settings.settings', compact('gateways', 'usedGateway', 'templates', 'selectedTemplate'));
+        return view('Settings.settings', compact('gateways', 'usedGateway', 'templates', 'selectedTemplate', 'labels', 'selectedLabel'));
     }
 
     public function saveSettings(Request $request)

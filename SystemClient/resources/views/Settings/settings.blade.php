@@ -59,7 +59,9 @@
                 <label>Etykieta dla nowego klienta:</label>
                 <select class="form-control" name="selectedLabel">
                     <option value="0"> --- </option>
-
+                    @foreach($labels as $label)
+                        <option value="{{$label->name}}" @if(isset($selectedLabel)) @if($selectedLabel == $label->name) selected @endif @endif>{{$label->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>

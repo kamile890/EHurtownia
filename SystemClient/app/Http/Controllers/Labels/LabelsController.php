@@ -59,6 +59,22 @@ class LabelsController extends Controller
     public function editLabel(Request $request)
     {
 
+        if(!$request->get('name'))
+        {
+            $message = 'Name cannot be empty';
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
+        }
+
+        $label = Label::where('name', $request->get('name'))->first();
+
+        if($label && $label->name != $request->get('name'))
+        {
+            $message = 'Etykieta z taką nazwą już istnieje.';
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
+        }
+
         try
         {
             Label::where('name', $request->get('name'))->update(
