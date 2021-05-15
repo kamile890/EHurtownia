@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Helpers;
 class AvailableSystemRoles
 {
 
-    const ROLES = ['Administator', 'Hurtownik', 'Klient'];
+    const ROLES = ['Administrator', 'Hurtownik', 'Klient'];
 
 
     public static function getRoles()
