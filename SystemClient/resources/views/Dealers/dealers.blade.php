@@ -53,7 +53,12 @@
                 <td>{{$dealer['numer_telefonu']}}</td>
                 <td style="text-align: end"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#b{{$dealer['id']}}">
                         Edytuj
-                    </button></td>
+                    </button>
+                    <form class="delete{{$dealer->id}}" style="display: none" action="/deleteDealer">
+                        <input name="id" value="{{$dealer->id}}" type="hidden">
+                    </form>
+                    <button onclick="submit('delete{{$dealer->id}}')">Usuń</button>
+                </td>
 
                 <div class="modal fade" id="b{{$dealer['id']}}">
                     <div class="modal-dialog">

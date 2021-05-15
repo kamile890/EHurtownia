@@ -12,6 +12,10 @@ use \App\Http\Controllers\Products\ProductsList;
 use \App\Http\Controllers\Categories\CategoriesList;
 use \App\Http\Controllers\Clients\ClientsList;
 use \App\Http\Controllers\CustomFields\CustomFieldsList;
+use \App\Http\Controllers\Home\HomeController;
+use \App\Http\Controllers\Koszyk\CartController;
+use \App\Http\Controllers\Koszyk\Zamowienie;
+use \App\Http\Controllers\Orders\OrdersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,10 +27,7 @@ use \App\Http\Controllers\CustomFields\CustomFieldsList;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/gateways', [GatewaysListController::class, 'index']);
 Route::get('/templatesList', [TemplatesList::class, 'index']);
 Route::get('/addTemplate', [TemplatesList::class, 'addTemplate']);
@@ -43,18 +44,31 @@ Route::get('/deleteTemplate', [TemplatesList::class, 'deleteTemplate']);
 Route::get('/labels', [LabelsController::class, 'index']);
 Route::get('/addLabel', [LabelsController::class, 'addLabel']);
 Route::get('/editLabel', [LabelsController::class, 'editLabel']);
+Route::get('/deleteLabel', [LabelsController::class, 'deleteLabel']);
 Route::get('/dealers', [DealersController::class, 'index']);
 Route::get('/addDealer', [DealersController::class, 'addDealer']);
 Route::get('/editDealer', [DealersController::class, 'editDealer']);
 Route::get('/products', [ProductsList::class, 'index']);
-Route::get('/addProduct', [ProductsList::class, 'addProduct']);
-Route::get('/editProduct', [ProductsList::class, 'editProduct']);
+Route::post('/addProduct', [ProductsList::class, 'addProduct']);
+Route::post('/editProduct', [ProductsList::class, 'editProduct']);
+Route::get('/deleteProduct', [ProductsList::class, 'deleteProduct']);
+Route::get('/restoreProduct', [ProductsList::class, 'restoreProduct']);
 Route::get('/categories', [CategoriesList::class, 'index']);
 Route::get('/addCategory', [CategoriesList::class, 'addCategory']);
+Route::get('/editCategory', [CategoriesList::class, 'editCategory']);
+Route::get('/deleteCategory', [CategoriesList::class, 'deleteCategory']);
 Route::get('/clients', [ClientsList::class, 'index']);
+Route::get('/editClient', [ClientsList::class, 'editClient']);
 Route::get('/customFields', [CustomFieldsList::class, 'index']);
 Route::get('/addCustom', [CustomFieldsList::class, 'addCustom']);
 Route::get('/editCustom', [CustomFieldsList::class, 'editCustom']);
+Route::get('/deleteField', [CustomFieldsList::class, 'deleteCustom']);
+Route::get('/deleteDealer', [DealersController::class, 'deleteDealer']);
+Route::get('/cart', [CartController::class, 'index']);
+Route::get('/addToCart', [CartController::class, 'addToCart']);
+Route::get('zamow', [Zamowienie::class, 'index']);
+Route::get('/order', [OrdersController::class, 'order']);
+
 
 
 

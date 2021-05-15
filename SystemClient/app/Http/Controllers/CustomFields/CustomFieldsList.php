@@ -91,4 +91,24 @@ class CustomFieldsList extends Controller
 
     }
 
+    public function deleteCustom(Request $request)
+    {
+
+        try
+        {
+            Custom::where('id', $request->get('id'))->delete();
+
+            $message = 'Custom Field został usunięty!';
+            $response = HttpResponse::success($message);
+            return back()->with(['message' => $response]);
+        }
+        catch(\Exception $ex)
+        {
+            $message = 'Something went wrong! Try again!';
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
+        }
+
+    }
+
 }

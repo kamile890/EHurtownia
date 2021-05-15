@@ -47,7 +47,12 @@
                 <td>{{$category['name']}}</td>
                 <td style="text-align: end"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#a{{$category['name']}}">
                         Edytuj
-                    </button></td>
+                    </button>
+                    <form class="delete{{$category->id}}" style="display: none" action="/deleteCategory">
+                        <input name="id" value="{{$category->id}}" type="hidden">
+                    </form>
+                    <button onclick="submit('delete{{$category->id}}')">Usuń</button>
+                </td>
 
                 <div class="modal fade" id="a{{$category['name']}}">
                     <div class="modal-dialog">
@@ -61,7 +66,7 @@
 
                             <!-- Modal body -->
                             <div class="modal-body">
-                                <form class="aa{{$category['name']}}" action="/editProduct">
+                                <form class="edit{{$category['id']}}" action="/editCategory">
                                     <input type="hidden" class="form-control" name="id" value="{{$category['id']}}" required>
                                     <div class="form-group">
                                         <label for="pwd">Nazwa:</label>
@@ -72,7 +77,7 @@
 
                             <!-- Modal footer -->
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="submit('aa{{$category['name']}}')" data-dismiss="modal">Save</button>
+                                <button type="button" class="btn btn-success" onclick="submit('edit{{$category['id']}}')" data-dismiss="modal">Save</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
 

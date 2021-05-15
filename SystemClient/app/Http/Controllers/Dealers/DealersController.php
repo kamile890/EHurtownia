@@ -132,4 +132,23 @@ class DealersController extends Controller
 
     }
 
+    public function deleteDealer(Request $request)
+    {
+
+        try
+        {
+            User::where('id', $request->get('id'))->delete();
+            $message = 'Hurtownik został usunięty!';
+            $response = HttpResponse::success($message);
+            return back()->with(['message' => $response]);
+        }
+        catch (\Exception $ex)
+        {
+            $message = 'Something went wrong! Try again!';
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
+        }
+
+    }
+
 }

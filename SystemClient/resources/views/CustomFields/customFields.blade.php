@@ -47,7 +47,12 @@
                 <td>{{$field['name']}}</td>
                 <td style="text-align: end"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#a{{$field['name']}}">
                         Edytuj
-                    </button></td>
+                    </button>
+                    <form class="delete{{$field->id}}" style="display: none" action="/deleteField">
+                        <input name="id" value="{{$field->id}}" type="hidden">
+                    </form>
+                    <button onclick="submit('delete{{$field->id}}')">Usuń</button>
+                </td>
 
                 <div class="modal fade" id="a{{$field['name']}}">
                     <div class="modal-dialog">

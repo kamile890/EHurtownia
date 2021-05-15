@@ -44,6 +44,27 @@
             function submit(htmlClass) {
                 $('.' + htmlClass).submit();
             }
+
+            function openCity(evt, cityName) {
+                // Declare all variables
+                var i, tabcontent, tablinks;
+
+                // Get all elements with class="tabcontent" and hide them
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Get all elements with class="tablinks" and remove the class "active"
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+
+                // Show the current tab, and add an "active" class to the link that opened the tab
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
         </script>
 
         @section('script')
@@ -94,9 +115,14 @@
                         @show
                     @elseif(!empty(\Illuminate\Support\Facades\Session::get('loggedRole')) && \Illuminate\Support\Facades\Session::get('loggedRole')[0] == 'Klient')
                         {{-- sekcja zalogowanego klienta --}}
-                        Teraz zalogowany jest Klient
+                            <li class="nav-item">
+                                <a class="nav-link" href="/cart">Koszyk</a>
+                            </li>
                     @else
                         @section('notLoggedClientSection')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/cart">Koszyk</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/registerPage">Register</a>
                             </li>
@@ -122,9 +148,7 @@
             @show
 
             @section('body')
-                <div>
 
-                </div>
             @show
     </body>
 </html>

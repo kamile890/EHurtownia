@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Labels;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\HttpResponse;
 use App\Models\Label;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class LabelsController extends Controller
@@ -93,6 +94,42 @@ class LabelsController extends Controller
             return back()->with(['message' => $response]);
         }
 
+
+    }
+
+    public function deleteLabel(Request $request)
+    {
+
+        if(!$request->get('name'))
+        {
+            $message = 'Something went wrong, try again!!!!';
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
+        }
+
+        try
+        {
+            Label::where('name', $request->get('name'))->delete();
+
+            $setting = Setting::where('name', 'selectedLabel')->first();
+
+            if($setting->value == $request->get('name'))
+            {
+                Setting::where('name', 'selectedLabel')->update([
+                    'value' => '0'
+                ]);
+            }
+
+            $message = 'Successfully deleted!';
+            $response = HttpResponse::success($message);
+            return back()->with(['message' => $response]);
+        }
+        catch(\Exception $ex)
+        {
+            $message = 'Something went wrong, try again!';
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
+        }
 
     }
 

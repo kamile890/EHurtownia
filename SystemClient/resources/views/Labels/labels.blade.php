@@ -49,7 +49,12 @@
                 <td><div class="color" style="background-color: {{$label['color']}}; width: 120px; height: 40px;"></div></td>
                 <td style="text-align: end"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#a{{$label['id']}}">
                         Edytuj
-                    </button></td>
+                    </button>
+                    <form class="delete{{$label->name}}" style="display: none" action="/deleteLabel">
+                        <input name="name" value="{{$label->name}}" type="hidden">
+                    </form>
+                    <button onclick="submit('delete{{$label->name}}')">Usuń</button>
+                </td>
 
                 <div class="modal fade" id="a{{$label['id']}}">
                     <div class="modal-dialog">

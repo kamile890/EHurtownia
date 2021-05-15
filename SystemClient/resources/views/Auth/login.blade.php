@@ -2,6 +2,9 @@
 
 @section('notLoggedClientSection')
     <li class="nav-item">
+        <a class="nav-link" href="/cart">Koszyk</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="/registerPage">Register</a>
     </li>
     <li class="nav-item active">

@@ -71,12 +71,25 @@
                                         <input type="text" class="form-control" value="{{$client['nazwisko']}}" name="nazwisko"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pwd">Email:</label>
-                                        <input type="email" class="form-control" value="{{$client['email']}}" name="email"/>
+                                        <label for="pwd">Numer Telefonu:</label>
+                                        <input type="text" class="form-control" value="{{$client['numer_telefonu']}}" placeholder="Wprowadź z numerem kierunkowym" name="numer_telefonu"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pwd">Miasto:</label>
+                                        <input type="text" class="form-control" value="{{$client['miasto']}}"  name="miasto"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pwd">Numer Telefonu:</label>
-                                        <input type="text" class="form-control" value="{{$client['numer_telefonu']}}" placeholder="Wprowadź z numerem kierunkowym" name="phone"/>
+                                        <label for="pwd">Kod pocztowy:</label>
+                                        <input type="text" class="form-control" value="{{$client['kodpocztowy']}}"  name='kodpocztowy'/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">Ulica:</label>
+                                        <input type="text" class="form-control" value="{{$client['ulica']}}"  name="ulica"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">Numer mieszkania:</label>
+                                        <input type="text" class="form-control" value="{{$client['numermieszkania']}}"  name="numermieszkania"/>
                                     </div>
                                 </form>
                             </div>

@@ -49,6 +49,7 @@ class Login extends Controller
         $role = Role::where('id', $user->role_id)->first();
         Session::push('loggedRole', $role->name);
         Session::push('logged', true);
+        Session::push('client', serialize($user->toArray()));
         if($remember)
         {
             //dodać dane ciasteczka

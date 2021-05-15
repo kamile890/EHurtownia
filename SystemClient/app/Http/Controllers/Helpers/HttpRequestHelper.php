@@ -12,7 +12,11 @@ class HttpRequestHelper
         $return = [];
         foreach($request as $key=>$param)
         {
-            $return[$key] = $param;
+            if($param)
+            {
+                $return[$key] = $param;
+            }
+
         }
         return $return;
     }
