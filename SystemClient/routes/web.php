@@ -68,6 +68,8 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::get('/addToCart', [CartController::class, 'addToCart']);
 Route::get('zamow', [Zamowienie::class, 'index']);
 Route::get('/order', [OrdersController::class, 'order']);
+Route::get('/orders', [OrdersController::class, 'listOrders']);
+Route::get('/realize', [OrdersController::class, 'realize']);
 
 
 

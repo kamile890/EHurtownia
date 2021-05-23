@@ -91,7 +91,8 @@ class ProductsList extends Controller
                 'price' => $request->get('price'),
                 'image_path' => $filename,
                 'amount' => $request->get('amount'),
-                'category_id' => (int)$request->get('category_id')
+                'category_id' => (int)$request->get('category_id'),
+                'deleted' => 0
             ]);
 
             $message = 'Produkt został dodany!';

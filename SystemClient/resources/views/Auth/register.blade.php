@@ -25,17 +25,18 @@
                     <input type="password" class="form-control" placeholder="Enter password" name="haslo" required>
                 </div>
             </div>
+            <div onclick="switchPlace()" id="hideDate">Dane osobowe</div>
 
-            <div class="row">
-                <div class="col-sm-6 form-container">
+            <div class="row" id="dane" style="display: none;">
+                <div class="col-sm-12 form-container">
                     <label for="city">Dane Osobowe:</label>
                     <div class="form-group">
                         <label>Imię:</label>
-                        <input type="text" class="form-control" name="imie" placeholder="Imię" required>
+                        <input type="text" class="form-control" name="imie" placeholder="Imię">
                     </div>
                     <div class="form-group">
                         <label>Nazwisko:</label>
-                        <input type="text" class="form-control" name="nazwisko" placeholder="Nazwisko" required>
+                        <input type="text" class="form-control" name="nazwisko" placeholder="Nazwisko">
                     </div>
                     <div class="form-group">
                         <label>Numer Telefonu:</label>
@@ -58,10 +59,11 @@
                         <input type="text" class="form-control" placeholder="Numer Mieszkania">
                     </div>
                 </div>
-                <div class="col-sm-6 form-container">
-                    <button type="submit">Rejestracja</button>
-                </div>
 
+
+            </div>
+            <div class="col-sm-12 form-container">
+                <button class="btn btn-primary" type="submit">Rejestracja</button>
             </div>
         </form>
     </div>

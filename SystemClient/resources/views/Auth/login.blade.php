@@ -25,13 +25,9 @@
                     <input type="password" class="form-control" placeholder="Enter password" name="haslo" required>
                 </div>
 
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" name="remember" type="checkbox"> Zapamiętaj
-                    </label>
-                </div>
+
             </div>
-            <button type="submit">Zaloguj</button>
+            <button class="btn btn-primary" type="submit">Zaloguj</button>
 
         </form>
     </div>

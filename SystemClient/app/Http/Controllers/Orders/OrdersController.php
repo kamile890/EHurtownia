@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\HttpResponse;
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -15,6 +16,51 @@ use Symfony\Component\HttpFoundation\Cookie;
 
 class OrdersController extends Controller
 {
+
+    public function listOrders(Request $request)
+    {
+
+        $client = Session::get('client');
+        $id = unserialize($client[0])['id'];
+
+        $role = Role::where('id', unserialize($client[0])['role_id'])->first();
+
+        if($role->name == 'Hurtownik')
+        {
+            $orders = Order::all();
+            $role = 'Hurtownik';
+            return view('Oreders.orders', compact('orders', 'role'));
+        }
+        else
+        {
+            $orders = Order::where('client_id', $id)->get();
+            return view('Oreders.orders', compact('orders'));
+        }
+
+
+
+
+    }
+
+    public function realize(Request $request)
+    {
+
+        try
+        {
+            Order::where('id', $request->get('id'))->update(['realized' => 1]);
+
+            $message = 'Zamówienie zostało zrealizowane.';
+            $response = HttpResponse::success($message);
+            return back()->with(['message' => $response]);
+        }
+        catch(\Exception $ex)
+        {
+            $message = 'Something went wrong! Try again!';
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
+        }
+
+    }
 
     public function order(Request $request)
     {
@@ -26,7 +72,7 @@ class OrdersController extends Controller
             return back()->with(['message' => $response]);
         }
 
-        $client_id = (unserialize(Session::get('client')[0]))->id;
+        $client_id = (unserialize(Session::get('client')[0]))['id'];
         $client = User::where('id', $client_id)->first();
 
         $products = unserialize($request->cookie('cart'));

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Koszyk;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Helpers\HttpResponse;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -65,9 +66,10 @@ class CartController extends Controller
             $cart[] = ['id' => $request->get('id'), 'amount' => 1];
         }
 
+        $message = 'Przedmiot dodano do koszyka.';
+        $response = HttpResponse::success($message);
 
-
-        return back()->withCookie('cart', serialize($cart));
+        return back()->withCookie('cart', serialize($cart))->with(['message' => $response]);;
     }
 
 

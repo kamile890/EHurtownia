@@ -10,8 +10,9 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'price', 'image_path', 'amount', 'category_id', 'realized'
+        'name', 'price', 'image_path', 'amount', 'category_id', 'deleted'
     ];
 
+    public $timestamps = false;
 
 }

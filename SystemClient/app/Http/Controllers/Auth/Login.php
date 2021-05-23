@@ -50,10 +50,10 @@ class Login extends Controller
         Session::push('loggedRole', $role->name);
         Session::push('logged', true);
         Session::push('client', serialize($user->toArray()));
-        if($remember)
+
+        if($role->name == 'Administrator')
         {
-            //dodać dane ciasteczka
-            return redirect('/')->with(['message' => $response]);
+            return redirect('/dealers')->with(['message' => $response]);
         }
 
         return redirect('/')->with(['message' => $response]);
@@ -62,7 +62,7 @@ class Login extends Controller
 
     public function logout()
     {
-        Session::forget(['logged', 'loggedRole']);
+        Session::forget(['logged', 'loggedRole', 'client']);
         return redirect('/');
     }
 

@@ -7,6 +7,7 @@
         <title>Laravel</title>
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/app.css') }}">
         <!-- Fonts -->
+
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -65,6 +66,16 @@
                 document.getElementById(cityName).style.display = "block";
                 evt.currentTarget.className += " active";
             }
+
+            function switchPlace(){
+
+                var dane = document.getElementById("dane");
+                if(dane.style.display == "none") {
+                    dane.style.display = "block";
+                }else{
+                    dane.style.display = "none";
+                }
+            }
         </script>
 
         @section('script')
@@ -110,14 +121,26 @@
                         @show
                     @elseif(!empty(\Illuminate\Support\Facades\Session::get('loggedRole')) && \Illuminate\Support\Facades\Session::get('loggedRole')[0] == 'Hurtownik')
                         @section('hurtownikNavbarSection')
-                        {{-- sekcja hurtownika --}}
-                            Teraz zalogowany jest hurtownik
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/products">Produkty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/orders">Zamówienia</a>
+                            </li>
                         @show
                     @elseif(!empty(\Illuminate\Support\Facades\Session::get('loggedRole')) && \Illuminate\Support\Facades\Session::get('loggedRole')[0] == 'Klient')
                         {{-- sekcja zalogowanego klienta --}}
+                        @section('clientSection')
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/">Produkty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/orders">Zamówienia</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/cart">Koszyk</a>
                             </li>
+                        @show
                     @else
                         @section('notLoggedClientSection')
                             <li class="nav-item">
