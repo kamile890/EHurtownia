@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\HttpResponse;
 use App\Models\Label;
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LabelsController extends Controller
@@ -105,6 +106,24 @@ class LabelsController extends Controller
             $message = 'Something went wrong, try again!!!!';
             $response = HttpResponse::error($message);
             return back()->with(['message' => $response]);
+        }
+
+        $users = User::where('role_id', 3)->get();
+        foreach($users as $user)
+        {
+            if(!empty(unserialize($user->labels)))
+            {
+                foreach (unserialize($user->labels) as $labelId)
+                {
+                    $label = Label::where('name', $request->get('name'))->first()->toArray();
+                    if($label['id'] == $labelId)
+                    {
+                        $message = 'Nie można usunąć etykiety. Jest przypisana do conajmniej jednego klienta';
+                        $response = HttpResponse::error($message);
+                        return back()->with(['message' => $response]);
+                    }
+                }
+            }
         }
 
         try

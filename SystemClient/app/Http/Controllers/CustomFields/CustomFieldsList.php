@@ -7,6 +7,8 @@ namespace App\Http\Controllers\CustomFields;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\HttpResponse;
 use App\Models\Custom;
+use App\Models\Label;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CustomFieldsList extends Controller
@@ -93,6 +95,24 @@ class CustomFieldsList extends Controller
 
     public function deleteCustom(Request $request)
     {
+
+        $users = User::where('role_id', 3)->get();
+        foreach($users as $user)
+        {
+            if(!empty(unserialize($user->labels)))
+            {
+                foreach (unserialize($user->labels) as $labelId)
+                {
+                    $label = Custom::where('id', $request->get('id'))->first()->toArray();
+                    if($label['id'] == $labelId)
+                    {
+                        $message = 'Nie można usunąć Custom Field. Jest przypisany do conajmniej jednego klienta';
+                        $response = HttpResponse::error($message);
+                        return back()->with(['message' => $response]);
+                    }
+                }
+            }
+        }
 
         try
         {
