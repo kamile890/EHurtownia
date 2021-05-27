@@ -2,13 +2,9 @@
 
 @section('body')
     <div class="tab">
-
                 @foreach($categories as $category)
                     <button class="tablinks" onclick="openCity(event, 'aa{{$category['id']}}')">{{$category['name']}}</button>
                 @endforeach
-
-
-
     </div>
 
     @foreach($categories as $category)

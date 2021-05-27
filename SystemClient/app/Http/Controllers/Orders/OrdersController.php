@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\HttpResponse;
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,13 +29,40 @@ class OrdersController extends Controller
         if($role->name == 'Hurtownik')
         {
             $orders = Order::all();
+            foreach($orders as &$order)
+            {
+                $products = [];
+                foreach (unserialize($order->products) as $orderProduct)
+                {
+
+                    $product = Product::where('id', $orderProduct)->first();
+                    $product->ilosc = $orderProduct['amount'];
+                    $products[] = $product;
+                }
+                $order->orderProducts = $products;
+
+            }
+
             $role = 'Hurtownik';
             return view('Oreders.orders', compact('orders', 'role'));
         }
         else
         {
             $orders = Order::where('client_id', $id)->get();
-            return view('Oreders.orders', compact('orders'));
+            foreach($orders as &$order)
+            {
+                $products = [];
+                foreach (unserialize($order->products) as $orderProduct)
+                {
+
+                    $product = Product::where('id', $orderProduct)->first();
+                    $product->ilosc = $orderProduct['amount'];
+                    $products[] = $product;
+                }
+                $order->orderProducts = $products;
+
+            }
+            return view('Oreders.orders', compact('orders', 'role'));
         }
 
 

@@ -17,6 +17,9 @@
 @section('hurtownikNavbarSection')
     {{-- sekcja hurtownika --}}
     <li class="nav-item">
+        <a class="nav-link" href="/clients">Lista Klientów</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="/products">Produkty</a>
     </li>
     <li class="nav-item">
@@ -31,6 +34,7 @@
         <tr>
             <th>Numer zamówienia</th>
             <th>Kwota</th>
+            <th>Produkty</th>
             <th>Zrealizowano</th>
             <th>Data złożenia</th>
             @if($role == 'Hurtownik')
@@ -46,6 +50,11 @@
             <tr>
                 <td>{{$order['order_number']}}</td>
                 <td>{{$order['price']}} zł</td>
+                <td>
+                    @foreach($order['orderProducts'] as $product)
+                            "{{$product['name']}}" ({{$product['ilosc']}} szt.)
+                    @endforeach
+                </td>
                 <td>{{$order['realized']}}</td>
                 <td>{{$order['created_at']}}</td>
                 @if($role == 'Hurtownik' )

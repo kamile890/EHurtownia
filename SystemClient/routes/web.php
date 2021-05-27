@@ -70,6 +70,9 @@ Route::get('zamow', [Zamowienie::class, 'index']);
 Route::get('/order', [OrdersController::class, 'order']);
 Route::get('/orders', [OrdersController::class, 'listOrders']);
 Route::get('/realize', [OrdersController::class, 'realize']);
+Route::get('/editClientCustom', [ClientsList::class, 'editClientCustom']);
+Route::get('/editClientLabel', [ClientsList::class, 'editClientLabel']);
+Route::get('/deleteLabelClient', [ClientsList::class, 'deleteLabelClient']);
 
 
 

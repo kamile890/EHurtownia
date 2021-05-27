@@ -56,6 +56,11 @@ class Login extends Controller
             return redirect('/dealers')->with(['message' => $response]);
         }
 
+        if($role->name == 'Hurtownik')
+        {
+            return redirect('/orders')->with(['message' => $response]);
+        }
+
         return redirect('/')->with(['message' => $response]);
 
     }

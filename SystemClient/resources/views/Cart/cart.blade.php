@@ -36,9 +36,16 @@
                 <div class="item-img">
                     <img src="{{ asset('images/' . $product['product']['image_path']) }}" class="rounded" alt="Cinque Terre" width="20%">
                 </div>
+                <div>
+                    <div>Ilość :  {{$product['amount']}}</div>
+                </div>
 
-                <div>Ilość :  {{$product['amount']}}</div>
                 <div>Cena: {{$product['price']}} zł</div>
+
+                <form class="delete{{$label->name}}" style="display: none" action="/deleteLabel">
+                    <input name="name" value="{{$label->name}}" type="hidden">
+                </form>
+                <button onclick="submit('delete{{$key}}')">Usuń</button>
             </div>
 
         </div>

@@ -30,6 +30,18 @@
     </li>
 @endsection
 
+@section('hurtownikNavbarSection')
+    <li class="nav-item">
+        <a class="nav-link" href="/clients">Lista Klientów</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/products">Produkty</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/orders">Zamówienia</a>
+    </li>
+@endsection
+
 @section('body')
     <table class="table table-striped">
         <thead>

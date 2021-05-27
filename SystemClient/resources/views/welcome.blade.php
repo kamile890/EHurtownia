@@ -46,6 +46,7 @@
                 $('.' + htmlClass).submit();
             }
 
+
             function openCity(evt, cityName) {
                 // Declare all variables
                 var i, tabcontent, tablinks;
@@ -121,6 +122,9 @@
                         @show
                     @elseif(!empty(\Illuminate\Support\Facades\Session::get('loggedRole')) && \Illuminate\Support\Facades\Session::get('loggedRole')[0] == 'Hurtownik')
                         @section('hurtownikNavbarSection')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/clients">Lista Klientów</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="/products">Produkty</a>
                             </li>
