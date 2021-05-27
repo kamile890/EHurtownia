@@ -27,7 +27,9 @@ class User extends Authenticatable
         'ulica',
         'kodpocztowy',
         'numermieszkania',
-        'ulica'
+        'ulica',
+        'labels',
+        'customs'
     ];
 
     /**

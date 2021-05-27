@@ -8,6 +8,7 @@ use App\Http\Controllers\Helpers\AjaxResponse;
 use App\Http\Controllers\Helpers\HttpResponse;
 use App\Http\Controllers\Helpers\PasswordEncoder;
 use App\Http\Controllers\Helpers\SenderHelper;
+use App\Models\Label;
 use App\Models\Role;
 use App\Models\Setting;
 use App\Models\Template;
@@ -45,14 +46,29 @@ class Register extends Controller
 
         $role = Role::where('name', 'Klient')->first();
 
-        $user = User::create([
-           'email' => $email,
-           'role_id' => $role->id,
-           'haslo' => $haslo,
-           'imie' => $imie,
-           'nazwisko' => $nazwisko,
-           'numer_telefonu' => $phone
-        ]);
+        $settingNewLabel = Setting::where('name', 'selectedLabel')->first();
+
+        $label = Label::where('name', $settingNewLabel->value)->first();
+
+        $labels = [];
+
+        if($label)
+        {
+            $labels[] = $label->id;
+        }
+
+        $params = [
+            'email' => $email,
+            'role_id' => $role->id,
+            'haslo' => $haslo,
+            'imie' => $imie,
+            'nazwisko' => $nazwisko,
+            'numer_telefonu' => $phone,
+            'labels' => !empty($labels) ? serialize($labels) : null
+        ];
+
+
+        $user = User::create($params);
 
         $this->sendRegisterMessage($user->id);
 
