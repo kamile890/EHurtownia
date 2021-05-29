@@ -68,7 +68,9 @@ class Login extends Controller
     public function logout()
     {
         Session::forget(['logged', 'loggedRole', 'client']);
-        return redirect('/');
+        $message = 'Wylogowano pomyślnie!';
+        $response = HttpResponse::success($message);
+        return redirect('/')->with($response);
     }
 
 }
