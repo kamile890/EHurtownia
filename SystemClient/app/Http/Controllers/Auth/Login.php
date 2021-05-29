@@ -25,7 +25,7 @@ class Login extends Controller
     {
         $email = $request->get('email');
         $haslo = PasswordEncoder::base64_encode($request->get('haslo'));
-        $remember = $request->get('remember');
+
 
         $user = User::where('email', $email)->first();
 

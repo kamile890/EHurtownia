@@ -24,5 +24,13 @@ class UserSeeder extends Seeder
             'imie' => 'Admin',
             'nazwisko' => 'Admin'
         ]);
+
+        User::create([
+           'email' => 'hurtownik@gmail.com',
+           'haslo' =>  'YWRtaW4=',
+            'role_id' => 2,
+            'imie' => 'Adam',
+            'nazwisko' => 'Małysz'
+        ]);
     }
 }
