@@ -66,7 +66,7 @@ class Register extends Controller
             'numer_telefonu' => $phone,
             'miasto' => $request->get('miasto'),
             'ulica' => $request->get('ulica'),
-            'kopocztowy' => $request->get('kodpocztowy'),
+            'kodpocztowy' => $request->get('kodpocztowy'),
             'numermieszkania' => $request->get('numermieszkania'),
             'labels' => !empty($labels) ? serialize($labels) : null
         ];
