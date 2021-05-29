@@ -44,19 +44,19 @@
                     </div>
                     <div class="form-group">
                         <label for="city">City:</label>
-                        <input type="text" class="form-control" placeholder="Miasto">
+                        <input type="text" class="form-control" name="miasto" placeholder="Miasto">
                     </div>
                     <div class="form-group">
                         <label for="city">Kod Pocztowy:</label>
-                        <input type="text" class="form-control" placeholder="Kod Pocztowy">
+                        <input type="text" class="form-control" name="kodpocztowy" placeholder="Kod Pocztowy">
                     </div>
                     <div class="form-group">
                         <label for="city">Ulica:</label>
-                        <input type="text" class="form-control" placeholder="Ulica">
+                        <input type="text" class="form-control" name="ulica" placeholder="Ulica">
                     </div>
                     <div class="form-group">
                         <label for="city">Numer Mieszkania:</label>
-                        <input type="text" class="form-control" placeholder="Numer Mieszkania">
+                        <input type="text" class="form-control" name="numermieszkania" placeholder="Numer Mieszkania">
                     </div>
                 </div>
 
