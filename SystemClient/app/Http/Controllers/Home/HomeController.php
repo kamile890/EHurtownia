@@ -14,7 +14,7 @@ class HomeController extends Controller
         public function index()
         {
             $categories = Category::all();
-            $products = Product::all();
+            $products = Product::where('deleted', 0)->get();
 
             return view('Home.home', compact('categories', 'products'));
         }

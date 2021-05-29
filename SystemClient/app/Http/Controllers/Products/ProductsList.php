@@ -17,7 +17,7 @@ class ProductsList extends Controller
 
     public function index()
     {
-        $productss = Product::where('deleted', 0)->get();
+        $productss = Product::all();
         $category = Category::all();
         $products = [];
 
