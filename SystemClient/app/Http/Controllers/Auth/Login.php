@@ -70,7 +70,7 @@ class Login extends Controller
         Session::forget(['logged', 'loggedRole', 'client']);
         $message = 'Wylogowano pomyślnie!';
         $response = HttpResponse::success($message);
-        return redirect('/')->with($response);
+        return redirect('/')->with(['message' => $response]);
     }
 
 }
