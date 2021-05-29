@@ -48,7 +48,7 @@
         <tr>
             <th>Nazwa</th>
             <th>Cena (zł)</th>
-            <th>Ilość</th>
+            <th>Obrazek</th>
             <th>Kategoria</th>
             <th>Usunięty</th>
             <th style="text-align: end"><button class="btn btn-primary" data-toggle="modal" data-target="#addProduct"><i class="fa fa-plus"></i> Dodaj Produkt</button></th>
@@ -61,7 +61,7 @@
         @foreach ($products as $product)
             <tr @if($product['deleted']) style="background-color: red;" @endif>
                 <td>{{$product['name']}}</td>
-                <td>{{$product['price']}}</td>
+                <td><img src="{{ asset('images/' . $product['image_path']) }}" class="rounded" alt="Cinque Terre"></td>
                 <td>{{$product['amount']}}</td>
                 <td>{{$product[0]['name']}}</td>
                 <td>@if($product['deleted'])
