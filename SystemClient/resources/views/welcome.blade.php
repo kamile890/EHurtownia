@@ -46,6 +46,11 @@
                 $('.' + htmlClass).submit();
             }
 
+            $( document ).ready(function() {
+                $('.tablinks:first').addClass('active')
+                $('.tabcontent:first').attr('style', 'display:block')
+                // $('.tablinks:first').click()
+            });
 
             function openCity(evt, cityName) {
                 // Declare all variables
@@ -77,6 +82,8 @@
                     dane.style.display = "none";
                 }
             }
+
+
         </script>
 
         @section('script')
@@ -136,6 +143,9 @@
                         {{-- sekcja zalogowanego klienta --}}
                         @section('clientSection')
                             <li class="nav-item">
+                                <a class="nav-link" href="/accountData">Dane Osobowe</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link active" href="/">Produkty</a>
                             </li>
                             <li class="nav-item">
@@ -151,7 +161,7 @@
                                 <a class="nav-link" href="/cart">Koszyk</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/registerPage">Register</a>
+                                <a class="nav-link" href="/registerPage">Rejestracja</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/loginPage">Login</a>

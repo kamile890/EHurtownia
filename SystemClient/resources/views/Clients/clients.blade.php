@@ -71,6 +71,9 @@
                     @endforeach
                 </td>
                 <td style="text-align: end">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sms{{$client['id']}}">
+                        SMS
+                    </button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#label{{$client['id']}}">
                         Etykiety
                     </button>
@@ -130,6 +133,40 @@
                             <!-- Modal footer -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" onclick="submit('bb{{$client['id']}}')" data-dismiss="modal">Save</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="sms{{$client['id']}}">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Wyślij SMS do {{$client['imie']}} {{$client['nazwisko']}}</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form class="ssm{{$client['id']}}" action="/sendToClient">
+                                    <input type="hidden" class="form-control" name="id" value="{{$client['id']}}" required>
+
+                                    <select class="form-control" name="template">
+                                        @foreach($templates as $template)
+                                            <option value="{{$template['id']}}">{{$template['name']}}</option>
+                                        @endforeach
+                                    </select>
+
+                                </form>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="submit('ssm{{$client['id']}}')" data-dismiss="modal">Wyślij</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
 

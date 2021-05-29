@@ -12,4 +12,6 @@ class DeliveryType extends Model
     protected $fillable = [
         'name', 'price'
     ];
+
+    public $timestamps = false;
 }

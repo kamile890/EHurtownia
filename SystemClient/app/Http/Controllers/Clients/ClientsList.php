@@ -7,11 +7,14 @@ namespace App\Http\Controllers\Clients;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\HttpRequestHelper;
 use App\Http\Controllers\Helpers\HttpResponse;
+use App\Http\Controllers\Helpers\SenderHelper;
 use App\Models\Custom;
 use App\Models\Label;
 use App\Models\Role;
+use App\Models\Template;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ClientsList extends Controller
 {
@@ -40,9 +43,10 @@ class ClientsList extends Controller
             $client->clientLabels = $clientLabels;
         }
 
+        $templates = Template::all();
 
 
-        return view('Clients.clients', compact('clients'));
+        return view('Clients.clients', compact('clients', 'templates'));
     }
 
 
@@ -187,4 +191,47 @@ class ClientsList extends Controller
 
     }
 
+    public function accountData(Request $request)
+    {
+
+        $clientId = unserialize(Session::get('client')[0])['id'];
+
+
+        $client = User::where('id', $clientId)->first();
+
+        return view('Clients.accountData', compact('client'));
+
+    }
+
+
+    public function saveClientSelf(Request $request)
+    {
+
+        try
+        {
+
+            $params = HttpRequestHelper::getArray($request->all());
+
+            User::where('id', $request->get('id'))->update(
+                $params
+            );
+            $message = 'Dane zostały edytowane.';
+            $response = HttpResponse::success($message);
+            return back()->with(['message' => $response]);
+        }
+        catch(\Exception $ex)
+        {
+            $message = 'Something went wrong! Try again!';
+            $response = HttpResponse::error($message);
+            return back()->with(['message' => $response]);
+        }
+
+    }
+
+    public function sendToClient(Request $request)
+    {
+
+        SenderHelper::sendSMS($request->get('client'), $request->get('template'));
+
+    }
 }

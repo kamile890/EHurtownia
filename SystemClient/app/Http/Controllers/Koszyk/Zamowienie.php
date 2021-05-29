@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Koszyk;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\HttpResponse;
+use App\Models\DeliveryType;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,11 @@ class Zamowienie extends Controller
             $price += $product['product']['price'] * $product['amount'];
         }
 
-        return view('Zamowienie.zamowienie', compact('products', 'price'));
+        $delivery = DeliveryType::all();
+
+        $zlozono = 0;
+
+        return view('Zamowienie.zamowienie', compact('products', 'price', 'delivery', 'zlozono'));
     }
 
 }

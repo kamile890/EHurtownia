@@ -31,8 +31,13 @@ class CartController extends Controller
             $price += $product['product']['price'] * $product['amount'];
         }
 
+        $empty = false;
+        if(empty($products))
+        {
+            $empty = true;
+        }
 
-        return view('Cart.cart', compact('products', 'price'));
+        return view('Cart.cart', compact('products', 'price', 'empty'));
     }
 
     public function addToCart(Request $request)
@@ -69,9 +74,30 @@ class CartController extends Controller
         $message = 'Przedmiot dodano do koszyka.';
         $response = HttpResponse::success($message);
 
-        return back()->withCookie('cart', serialize($cart))->with(['message' => $response]);;
+        return back()->withCookie('cart', serialize($cart))->with(['message' => $response]);
     }
 
+    public function deletefromCart(Request $request)
+    {
+
+        $cart = unserialize($request->cookie('cart'));
+        $newCart = [];
+        foreach ($cart as $key=>$value)
+        {
+            if($key != $request->get('id'))
+            {
+                $newCart[] = $value;
+            }
+        }
+
+        $message = 'Przedmiot usunięto z koszyka.';
+        $response = HttpResponse::success($message);
+
+        return back()->withCookie('cart', serialize($newCart))->with(['message' => $response]);
+
+
+
+    }
 
     private function inCart($request, $id)
     {

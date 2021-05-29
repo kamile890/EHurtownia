@@ -14,6 +14,9 @@
 
 @section('clientSection')
     <li class="nav-item">
+        <a class="nav-link" href="/accountData">Dane Osobowe</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="/">Produkty</a>
     </li>
     <li class="nav-item">
@@ -41,9 +44,8 @@
                 </div>
 
                 <div>Cena: {{$product['price']}} zł</div>
-
-                <form class="delete{{$label->name}}" style="display: none" action="/deleteLabel">
-                    <input name="name" value="{{$label->name}}" type="hidden">
+                <form class="delete{{$key}}" style="display: none" action="/deletefromCart">
+                    <input name="id" value="{{$key}}" type="hidden">
                 </form>
                 <button onclick="submit('delete{{$key}}')">Usuń</button>
             </div>
@@ -56,7 +58,7 @@
         <div class="podsumowanie">
             <div>Podsumowanie</div>
             <div>Cena: {{$price}} zł</div>
-            <a class="btn btn-primary" href="/zamow">Złóż zamówienie</a>
+            <a @if($empty)style="pointer-events: none;" class="btn btn-secondary"@else class="btn btn-primary" @endif href="/zamow" disabled>Złóż zamówienie</a>
         </div>
 
 

@@ -4,6 +4,9 @@
 
 @section('clientSection')
     <li class="nav-item">
+        <a class="nav-link" href="/accountData">Dane Osobowe</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="/">Produkty</a>
     </li>
     <li class="nav-item">

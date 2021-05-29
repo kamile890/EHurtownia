@@ -125,7 +125,7 @@ class OrdersController extends Controller
         try
         {
 
-            if(!$client->miasto || !$client->kodpocztowy || !$client->ulica || !$client->numermieszkania)
+            if(!$client->numer_telefonu || !$client->imie || !$client->nazwisko || !$client->miasto || !$client->kodpocztowy || !$client->ulica || !$client->numermieszkania)
             {
                 $message = 'Dane do wysyłki nie są zupełne. Uzupełnij je i złóż zamówienie ponownie.';
                 $response = HttpResponse::error($message);
@@ -136,7 +136,12 @@ class OrdersController extends Controller
             $cookie1 = \Illuminate\Support\Facades\Cookie::forget('cart');
             $message = 'Zamówienie zostało złożone.';
             $response = HttpResponse::success($message);
-            return back()->with(['message' => $response])->withCookie($cookie1);
+
+
+
+
+            return redirect('/orders')->with(['message' => $response])->withCookie($cookie1);
+
         }
         catch(\Exception $ex)
         {

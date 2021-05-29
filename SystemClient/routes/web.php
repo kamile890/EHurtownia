@@ -73,6 +73,10 @@ Route::get('/realize', [OrdersController::class, 'realize']);
 Route::get('/editClientCustom', [ClientsList::class, 'editClientCustom']);
 Route::get('/editClientLabel', [ClientsList::class, 'editClientLabel']);
 Route::get('/deleteLabelClient', [ClientsList::class, 'deleteLabelClient']);
+Route::get('/deletefromCart', [CartController::class, 'deletefromCart']);
+Route::get('/accountData', [ClientsList::class, 'accountData']);
+Route::get('/saveClientSelf', [ClientsList::class, 'saveClientSelf']);
+Route::get('/sendToClient', [ClientsList::class, 'sendToClient']);
 
 
 

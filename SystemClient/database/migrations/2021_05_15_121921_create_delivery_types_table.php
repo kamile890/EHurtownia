@@ -17,7 +17,6 @@ class CreateDeliveryTypesTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->float('price');
-            $table->timestamps();
         });
     }
 
