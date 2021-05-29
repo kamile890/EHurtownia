@@ -61,8 +61,8 @@
         @foreach ($products as $product)
             <tr @if($product['deleted']) style="background-color: red;" @endif>
                 <td>{{$product['name']}}</td>
-                <td><img src="{{ asset('images/' . $product['image_path']) }}" class="rounded" alt="Cinque Terre"></td>
-                <td>{{$product['amount']}}</td>
+                <td>{{$product['price']}}</td>
+                <td><img src="{{ asset('images/' . $product['image_path']) }}" class="rounded" alt="Cinque Terre" style="max-height: 100px; max-width:100px"></td>
                 <td>{{$product[0]['name']}}</td>
                 <td>@if($product['deleted'])
                         <form class="restore{{$product['id']}}" style="display: none" action="/restoreProduct">
